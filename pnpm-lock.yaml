@@ -5,9 +5,21 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@expo-google-fonts/baloo-2':
+    specifier: ^0.2.3
+    version: 0.2.3
+  '@expo-google-fonts/roboto':
+    specifier: ^0.2.3
+    version: 0.2.3
   expo:
     specifier: ~49.0.18
     version: 49.0.22(@babel/core@7.23.9)
+  expo-font:
+    specifier: ~11.4.0
+    version: 11.4.0(expo@49.0.22)
+  expo-splash-screen:
+    specifier: ~0.20.5
+    version: 0.20.5(expo-modules-autolinking@1.5.1)(expo@49.0.22)
   expo-status-bar:
     specifier: ~1.6.0
     version: 1.6.0
@@ -1534,6 +1546,14 @@ packages:
     resolution: {integrity: sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@expo-google-fonts/baloo-2@0.2.3:
+    resolution: {integrity: sha512-irXW8eqvMqR2IbeXncQw33Hj3P47Wrv11qF0NMGrcQ7zOqzncUOBzXhN/OngKQpGTPyeI6lmv/GAb4cpb9xA+Q==}
+    dev: false
+
+  /@expo-google-fonts/roboto@0.2.3:
+    resolution: {integrity: sha512-PF6S//ZYWeXfpYTwvY2oEe0d5RnqwR5KMsGjuTgg6y9p/CPK/IkWL+wsbkzjfd+Jck1Q1pRlWOoe5uz42sQFRg==}
+    dev: false
 
   /@expo/bunyan@4.0.0:
     resolution: {integrity: sha512-Ydf4LidRB/EBI+YrB+cVLqIseiRfjUI/AeHBgjGMtq3GroraDu81OV7zqophRgupngoL3iS3JUMDMnxO7g39qA==}
@@ -4349,6 +4369,19 @@ packages:
     dependencies:
       compare-versions: 3.6.0
       invariant: 2.2.4
+    dev: false
+
+  /expo-splash-screen@0.20.5(expo-modules-autolinking@1.5.1)(expo@49.0.22):
+    resolution: {integrity: sha512-nTALYdjHpeEA30rdOWSguxn72ctv8WM8ptuUgpfRgsWyn4i6rwYds/rBXisX69XO5fg+XjHAQqijGx/b28+3tg==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      '@expo/prebuild-config': 6.2.6(expo-modules-autolinking@1.5.1)
+      expo: 49.0.22(@babel/core@7.23.9)
+    transitivePeerDependencies:
+      - encoding
+      - expo-modules-autolinking
+      - supports-color
     dev: false
 
   /expo-status-bar@1.6.0:
