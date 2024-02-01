@@ -4,6 +4,8 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useFonts, Baloo2_700Bold } from '@expo-google-fonts/baloo-2'
 import { Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto'
 
+import { Routes } from './src/routes'
+
 export default function App() {
   const [hasLoadedFonts] = useFonts({
     Baloo2_700Bold,
@@ -28,6 +30,8 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" backgroundColor="transparent" translucent />
+
+      <Routes />
     </>
   )
 }
