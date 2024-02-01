@@ -1,21 +1,21 @@
 export const THEME = {
-  colors: {
-    white: '#FFFFFF',
-    black: '#000000',
-    transparent: 'transparent',
+  COLORS: {
+    WHITE: '#FFFFFF',
+    BLACK: '#000000',
+    TRANSPARENT: 'transparent',
 
-    yellow: {
+    YELLOW: {
       500: '#DBAC2C',
       700: '#C47F17',
     },
 
-    purple: {
+    PURPLE: {
       300: '#EBE5F9',
       500: '#8047F8',
       700: '#4B2995',
     },
 
-    gray: {
+    GRAY: {
       100: '#FAFAFA',
       200: '#F3F2F2',
       300: '#EDEDED',
@@ -27,32 +27,31 @@ export const THEME = {
       900: '#272221',
     },
 
-    red: {
+    RED: {
       300: '#F2DFD8',
       500: '#E8BAAB',
       700: '#C44117',
     },
   },
 
-  fontFamily: {
-    title: 'Baloo2_700Bold',
-
-    'body-bold': 'Roboto_700Bold',
-    'body-regular': 'Roboto_400Regular',
+  FONT_FAMILY: {
+    TITLE: 'Baloo2_700Bold',
+    BODY_BOLD: 'Roboto_700Bold',
+    BODY_REGULAR: 'Roboto_400Regular',
   },
 
-  fontSize: {
-    xxs: 10,
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 20,
-    xl: 24,
-    '2xl': 36,
+  FONT_SIZE: {
+    XXS: 10,
+    XS: 12,
+    SM: 14,
+    MD: 16,
+    LG: 20,
+    XL: 24,
+    '2XL': 36,
   },
 
-  lineHeight: {
-    normal: 1.3,
-    large: 1.6,
+  LINE_HEIGHT: {
+    NORMAL: 1.3,
+    LARGE: 1.6,
   },
 } as const
