@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     lineHeight: getLineHeight(THEME.FONT_SIZE.SM, 'NORMAL'),
   },
   containerStyle: {
+    zIndex: 0,
     paddingBottom: 120,
   },
 })

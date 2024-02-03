@@ -1,5 +1,6 @@
-import { Text, View } from 'react-native'
+import { StyleProp, TextStyle, View, ViewStyle } from 'react-native'
 import { MapPin } from 'phosphor-react-native'
+import Animated from 'react-native-reanimated'
 
 import { THEME } from '@/theme/default'
 
@@ -7,16 +8,26 @@ import { styles } from './styles'
 
 import { CartButton } from '@/components/cart-button'
 
-export function MainHeader() {
+interface MainHeaderProps {
+  animatedTextStyle?: StyleProp<TextStyle>
+  animatedContainerStyle?: StyleProp<ViewStyle>
+}
+
+export function MainHeader({
+  animatedTextStyle,
+  animatedContainerStyle,
+}: MainHeaderProps) {
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, animatedContainerStyle]}>
       <View style={styles.location}>
         <MapPin weight="fill" size={20} color={THEME.COLORS.PURPLE[500]} />
 
-        <Text style={styles.text}>São José, SP</Text>
+        <Animated.Text style={[styles.text, animatedTextStyle]}>
+          São José, SP
+        </Animated.Text>
       </View>
 
       <CartButton />
-    </View>
+    </Animated.View>
   )
 }

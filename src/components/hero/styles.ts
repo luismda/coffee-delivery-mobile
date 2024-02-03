@@ -6,7 +6,6 @@ import { getLineHeight } from '@/utils/get-line-height'
 export const styles = StyleSheet.create({
   container: {
     paddingBottom: 56,
-    backgroundColor: THEME.COLORS.GRAY[900],
   },
   hero: {
     paddingTop: 20,

@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: THEME.COLORS.GRAY[900],
   },
   location: {
     flexDirection: 'row',

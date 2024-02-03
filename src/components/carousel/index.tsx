@@ -13,13 +13,13 @@ const SCREEN_WIDTH = Dimensions.get('window').width
 export function Carousel() {
   return (
     <Animated.View
-      entering={ZoomInRight.delay(1400).duration(1400)}
+      entering={ZoomInRight.delay(600).duration(1400)}
       style={styles.container}
     >
       <ReanimatedCarousel
         loop={false}
         width={SCREEN_WIDTH}
-        height={292}
+        height={298}
         mode="parallax"
         modeConfig={{
           parallaxScrollingOffset: 232,

@@ -7,4 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: THEME.COLORS.GRAY[100],
   },
+  header: {
+    backgroundColor: THEME.COLORS.GRAY[900],
+  },
 })
