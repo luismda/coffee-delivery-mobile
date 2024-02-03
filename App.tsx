@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import * as SplashScreen from 'expo-splash-screen'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useFonts, Baloo2_700Bold } from '@expo-google-fonts/baloo-2'
 import { Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto'
 
@@ -28,10 +29,9 @@ export default function App() {
   }
 
   return (
-    <>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar style="light" backgroundColor="transparent" translucent />
-
       <Routes />
-    </>
+    </GestureHandlerRootView>
   )
 }
