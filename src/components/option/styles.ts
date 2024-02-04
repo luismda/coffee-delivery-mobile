@@ -5,18 +5,15 @@ import { getLineHeight } from '@/utils/get-line-height'
 
 export const styles = StyleSheet.create({
   container: {
-    gap: 8,
-    padding: 12,
-    borderRadius: 4,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: THEME.COLORS.GRAY[800],
-  },
-  input: {
     flex: 1,
-    color: THEME.COLORS.GRAY[300],
+    height: 40,
+    borderWidth: 1,
+    borderRadius: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
     fontSize: THEME.FONT_SIZE.SM,
-    fontFamily: THEME.FONT_FAMILY.BODY_REGULAR,
     lineHeight: getLineHeight(THEME.FONT_SIZE.SM, 'NORMAL'),
   },
 })

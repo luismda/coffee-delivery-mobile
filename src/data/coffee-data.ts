@@ -126,7 +126,7 @@ export const COFFEE_DATA: CoffeeData[] = [
   },
 ]
 
-const COFFEE_LIST = COFFEE_DATA.map(({ data }) => data).flat()
+export const COFFEE_LIST = COFFEE_DATA.map(({ data }) => data).flat()
 
 export const HIGHLIGHT_COFFEE_DATA: CoffeeDTO[] = [
   COFFEE_LIST[3],
