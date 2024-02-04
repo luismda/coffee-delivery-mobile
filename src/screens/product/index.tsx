@@ -2,6 +2,7 @@ import { Text, View } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import Animated, { FadeInUp } from 'react-native-reanimated'
 
 import { COFFEE_LIST } from '@/data/coffee-data'
 import { priceFormatter } from '@/utils/price-formatter'
@@ -30,25 +31,27 @@ export function ProductScreen() {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.content}>
-          <View style={styles.header}>
-            <BackButton />
-            <CartButton />
-          </View>
+          <Animated.View entering={FadeInUp.delay(200).duration(600)}>
+            <View style={styles.header}>
+              <BackButton />
+              <CartButton />
+            </View>
 
-          <View style={styles.badge}>
-            <Text style={styles.badgeLabel}>{coffee.category}</Text>
-          </View>
+            <View style={styles.badge}>
+              <Text style={styles.badgeLabel}>{coffee.category}</Text>
+            </View>
 
-          <View style={styles.info}>
-            <Text style={styles.name}>{coffee.name}</Text>
+            <View style={styles.info}>
+              <Text style={styles.name}>{coffee.name}</Text>
 
-            <Text style={styles.price}>
-              <Text style={styles.priceSymbol}>R$</Text>{' '}
-              {priceFormatter.format(coffee.price)}
-            </Text>
-          </View>
+              <Text style={styles.price}>
+                <Text style={styles.priceSymbol}>R$</Text>{' '}
+                {priceFormatter.format(coffee.price)}
+              </Text>
+            </View>
 
-          <Text style={styles.description}>{coffee.description}</Text>
+            <Text style={styles.description}>{coffee.description}</Text>
+          </Animated.View>
 
           <Cup />
         </View>

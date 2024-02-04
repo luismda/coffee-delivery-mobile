@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Text, View } from 'react-native'
+import Animated, { SlideInDown } from 'react-native-reanimated'
 
 import { CoffeeDTO } from '@/dtos/coffee-dto'
 
@@ -18,7 +19,10 @@ export function FormAddCart({ data }: FormAddCartProps) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null)
 
   return (
-    <View style={styles.container}>
+    <Animated.View
+      entering={SlideInDown.duration(800)}
+      style={styles.container}
+    >
       <Text style={styles.title}>Selecione o tamanho:</Text>
 
       <View style={styles.options}>
@@ -39,6 +43,6 @@ export function FormAddCart({ data }: FormAddCartProps) {
           <Button title="Adicionar" />
         </View>
       </View>
-    </View>
+    </Animated.View>
   )
 }
