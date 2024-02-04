@@ -1,7 +1,16 @@
 import { ScrollView, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useAtomValue, useSetAtom } from 'jotai'
+import Animated, { SlideOutDown } from 'react-native-reanimated'
 
-import { CoffeeItemDTO } from '@/dtos/coffee-dto'
+import {
+  cartItemsAtom,
+  clearCartAtom,
+  totalCartPriceAtom,
+  updateItemAmountAtom,
+  removeItemFromCartAtom,
+} from '@/state/cart-state'
+
 import { priceFormatter } from '@/utils/price-formatter'
 
 import { styles } from './styles'
@@ -12,10 +21,18 @@ import { EmptyCart } from '@/components/empty-cart'
 import { ScreenHeader } from '@/components/screen-header'
 
 export function CartScreen() {
-  const totalPrice = 0
+  const cartItems = useAtomValue(cartItemsAtom)
+  const totalPrice = useAtomValue(totalCartPriceAtom)
 
-  const cartItems: CoffeeItemDTO[] = []
-  const hasCartItems = false
+  const clearCart = useSetAtom(clearCartAtom)
+  const updateItemAmount = useSetAtom(updateItemAmountAtom)
+  const removeItemFromCart = useSetAtom(removeItemFromCartAtom)
+
+  function handleFinishOrder() {
+    clearCart()
+  }
+
+  const hasCartItems = cartItems.length > 0
 
   return (
     <SafeAreaView style={styles.container}>
@@ -28,7 +45,12 @@ export function CartScreen() {
             showsVerticalScrollIndicator={false}
           >
             {cartItems.map((item) => (
-              <CartItem key={item.id} data={item} />
+              <CartItem
+                key={item.id.concat(item.size)}
+                data={item}
+                onRemove={removeItemFromCart}
+                onUpdateAmount={updateItemAmount}
+              />
             ))}
           </ScrollView>
         ) : (
@@ -37,7 +59,7 @@ export function CartScreen() {
       </View>
 
       {hasCartItems && (
-        <View style={styles.footer}>
+        <Animated.View exiting={SlideOutDown} style={styles.footer}>
           <View style={styles.totalCart}>
             <Text style={styles.total}>Valor total</Text>
 
@@ -46,8 +68,12 @@ export function CartScreen() {
             </Text>
           </View>
 
-          <Button title="Confirmar pedido" variant="secondary" />
-        </View>
+          <Button
+            title="Confirmar pedido"
+            variant="secondary"
+            onPress={handleFinishOrder}
+          />
+        </Animated.View>
       )}
     </SafeAreaView>
   )

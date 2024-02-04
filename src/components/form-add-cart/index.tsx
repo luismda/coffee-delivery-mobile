@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { Text, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import Animated, { SlideInDown } from 'react-native-reanimated'
+import { useSetAtom } from 'jotai'
 
 import { CoffeeDTO } from '@/dtos/coffee-dto'
+import { addItemToCartAtom } from '@/state/cart-state'
 
 import { styles } from './styles'
 
@@ -15,8 +18,24 @@ interface FormAddCartProps {
 }
 
 export function FormAddCart({ data }: FormAddCartProps) {
+  const navigation = useNavigation()
+
+  const addItemToCart = useSetAtom(addItemToCartAtom)
+
   const [amount, setAmount] = useState(1)
   const [selectedSize, setSelectedSize] = useState<string | null>(null)
+
+  function handleAddItemToCart() {
+    if (!selectedSize) return
+
+    addItemToCart({
+      ...data,
+      amount,
+      size: selectedSize,
+    })
+
+    navigation.goBack()
+  }
 
   return (
     <Animated.View
@@ -40,7 +59,7 @@ export function FormAddCart({ data }: FormAddCartProps) {
         <Counter currentCount={amount} onUpdate={setAmount} />
 
         <View style={styles.buttonContainer}>
-          <Button title="Adicionar" />
+          <Button title="Adicionar" onPress={handleAddItemToCart} />
         </View>
       </View>
     </Animated.View>

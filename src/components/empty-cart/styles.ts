@@ -5,17 +5,21 @@ import { getLineHeight } from '@/utils/get-line-height'
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    marginTop: 64,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 80,
   },
   message: {
-    marginTop: 8,
+    marginTop: 12,
     textAlign: 'center',
     color: THEME.COLORS.GRAY[600],
     fontSize: THEME.FONT_SIZE.SM,
     fontFamily: THEME.FONT_FAMILY.BODY_REGULAR,
     lineHeight: getLineHeight(THEME.FONT_SIZE.SM, 'NORMAL'),
+  },
+  button: {
+    width: '100%',
+    marginTop: 32,
+    paddingHorizontal: 64,
   },
 })
