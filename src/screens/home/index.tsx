@@ -51,7 +51,13 @@ export function HomeScreen() {
     top: insets.top,
     borderBottomWidth: 1,
     position: 'absolute',
-    paddingVertical: interpolate(
+    paddingTop: interpolate(
+      scrollY.value,
+      [0, 280],
+      [36, 24],
+      Extrapolate.CLAMP,
+    ),
+    paddingBottom: interpolate(
       scrollY.value,
       [0, 280],
       [20, 8],
@@ -84,8 +90,8 @@ export function HomeScreen() {
     width: '100%',
     position: 'absolute',
     borderBottomWidth: 1,
-    top: insets.top + 61.1,
-    opacity: scrollY.value >= 518 ? 1 : 0,
+    top: insets.top + 69.1,
+    opacity: scrollY.value >= 526 ? 1 : 0,
     backgroundColor: THEME.COLORS.GRAY[100],
     pointerEvents: scrollY.value >= 510 ? 'auto' : 'none',
     borderBottomColor: interpolateColor(

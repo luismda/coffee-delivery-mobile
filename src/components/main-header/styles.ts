@@ -5,9 +5,9 @@ import { getLineHeight } from '@/utils/get-line-height'
 
 export const styles = StyleSheet.create({
   container: {
-    paddingTop: 16,
+    paddingTop: 36,
+    paddingBottom: 20,
     paddingHorizontal: 32,
-    paddingVertical: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
