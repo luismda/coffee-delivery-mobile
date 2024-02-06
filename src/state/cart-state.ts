@@ -9,6 +9,7 @@ type CartAtom = Map<string, CoffeeItemDTO>
  */
 
 export const cartAtom = atom<CartAtom>(new Map())
+export const lastItemAddedAtom = atom<CoffeeItemDTO | null>(null)
 
 /**
  * State selectors
@@ -50,6 +51,8 @@ export const addItemToCartAtom = atom(
 
       return new Map(cartItemsMap)
     })
+
+    set(lastItemAddedAtom, newItem)
   },
 )
 

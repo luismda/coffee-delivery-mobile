@@ -18,6 +18,7 @@ import { THEME } from '@/theme/default'
 import { styles } from './styles'
 
 import { Hero } from '@/components/hero'
+import { Toast } from '@/components/toast'
 import { Carousel } from '@/components/carousel'
 import { MainHeader } from '@/components/main-header'
 import { CatalogList } from '@/components/catalog-list'
@@ -154,6 +155,8 @@ export function HomeScreen() {
           }
           onScroll={scrollHandler}
         />
+
+        <Toast />
       </SafeAreaView>
     </>
   )
