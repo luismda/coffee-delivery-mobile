@@ -37,7 +37,7 @@ export function Toast() {
 
   return (
     <Animated.View
-      entering={SlideInDown.delay(100).springify().mass(0.3)}
+      entering={SlideInDown.delay(160).springify().mass(0.3)}
       exiting={SlideOutDown.springify()}
       style={styles.container}
     >
