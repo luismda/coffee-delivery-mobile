@@ -2,10 +2,10 @@ import { ScrollView, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useAtomValue, useSetAtom } from 'jotai'
 import Animated, { SlideOutDown } from 'react-native-reanimated'
+import { useNavigation } from '@react-navigation/native'
 
 import {
   cartItemsAtom,
-  clearCartAtom,
   totalCartPriceAtom,
   updateItemAmountAtom,
   removeItemFromCartAtom,
@@ -21,15 +21,16 @@ import { EmptyCart } from '@/components/empty-cart'
 import { ScreenHeader } from '@/components/screen-header'
 
 export function CartScreen() {
+  const navigation = useNavigation()
+
   const cartItems = useAtomValue(cartItemsAtom)
   const totalPrice = useAtomValue(totalCartPriceAtom)
 
-  const clearCart = useSetAtom(clearCartAtom)
   const updateItemAmount = useSetAtom(updateItemAmountAtom)
   const removeItemFromCart = useSetAtom(removeItemFromCartAtom)
 
   function handleFinishOrder() {
-    clearCart()
+    navigation.navigate('confirmed')
   }
 
   const hasCartItems = cartItems.length > 0
