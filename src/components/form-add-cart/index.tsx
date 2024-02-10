@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import * as Haptics from 'expo-haptics'
+import { Audio } from 'expo-av'
 import { useSetAtom } from 'jotai'
 
 import Animated, {
@@ -17,6 +18,8 @@ import Animated, {
 import { THEME } from '@/theme/default'
 import { CoffeeDTO } from '@/dtos/coffee-dto'
 import { addItemToCartAtom } from '@/state/cart-state'
+
+import cartSound from '@/assets/sounds/added-to-cart.mp3'
 
 import { styles } from './styles'
 
@@ -67,6 +70,11 @@ export function FormAddCart({ data }: FormAddCartProps) {
     opacity: buttonOpacity.value,
   }))
 
+  function handleSelectSize(size: string) {
+    setSelectedSize(size)
+    buttonOpacity.value = withTiming(1)
+  }
+
   function runInvalidAnimations() {
     invalid.value = withSequence(
       withTiming(InvalidAnimation.Invalid, { duration: 600 }),
@@ -74,9 +82,13 @@ export function FormAddCart({ data }: FormAddCartProps) {
     )
   }
 
-  function handleSelectSize(size: string) {
-    setSelectedSize(size)
-    buttonOpacity.value = withTiming(1)
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(cartSound, {
+      shouldPlay: true,
+    })
+
+    await sound.setPositionAsync(0)
+    await sound.playAsync()
   }
 
   async function handleAddItemToCart() {
@@ -92,6 +104,8 @@ export function FormAddCart({ data }: FormAddCartProps) {
       amount,
       size: selectedSize,
     })
+
+    await playSound()
 
     navigation.goBack()
   }

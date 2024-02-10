@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 import { useSetAtom } from 'jotai'
+import { Audio } from 'expo-av'
 
 import Animated, {
   Easing,
@@ -16,6 +17,7 @@ import Animated, {
 import { clearCartAtom } from '@/state/cart-state'
 
 import DeliverySvg from '@/assets/illustrations/delivery.svg'
+import confirmedSound from '@/assets/sounds/confirmed-order.mp3'
 
 import { styles } from './styles'
 
@@ -26,10 +28,23 @@ export function ConfirmedScreen() {
 
   const clearCart = useSetAtom(clearCartAtom)
 
+  const playSound = useCallback(async () => {
+    const { sound } = await Audio.Sound.createAsync(confirmedSound, {
+      shouldPlay: true,
+    })
+
+    await sound.setPositionAsync(0)
+    await sound.playAsync()
+  }, [])
+
   const handleGoBackToHome = useCallback(() => {
     clearCart()
     navigation.navigate('home')
   }, [clearCart, navigation])
+
+  useEffect(() => {
+    playSound()
+  }, [playSound])
 
   useEffect(() => {
     const backHandler = BackHandler.addEventListener(
