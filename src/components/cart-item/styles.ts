@@ -4,6 +4,15 @@ import { THEME } from '@/theme/default'
 import { getLineHeight } from '@/utils/get-line-height'
 
 export const styles = StyleSheet.create({
+  swipeableContainer: {
+    backgroundColor: THEME.COLORS.RED[300],
+  },
+  swipeableBackground: {
+    width: 95,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: THEME.COLORS.RED[300],
+  },
   container: {
     gap: 20,
     paddingVertical: 16,
@@ -11,6 +20,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 32,
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: THEME.COLORS.GRAY[100],
     borderBottomColor: THEME.COLORS.GRAY[300],
   },
   image: {
