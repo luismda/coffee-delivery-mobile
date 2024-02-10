@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useAtomValue, useSetAtom } from 'jotai'
 import Animated, { SlideOutDown } from 'react-native-reanimated'
 import { useNavigation } from '@react-navigation/native'
+import { StatusBar } from 'expo-status-bar'
 
 import {
   cartItemsAtom,
@@ -36,46 +37,50 @@ export function CartScreen() {
   const hasCartItems = cartItems.length > 0
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
-        <ScreenHeader title="Carrinho" />
+    <>
+      <StatusBar backgroundColor="transparent" />
 
-        {hasCartItems ? (
-          <ScrollView
-            contentContainerStyle={{ flexGrow: 1, paddingBottom: 48 }}
-            showsVerticalScrollIndicator={false}
-          >
-            {cartItems.map((item) => (
-              <CartItem
-                key={item.id.concat(item.size)}
-                data={item}
-                onRemove={removeItemFromCart}
-                onUpdateAmount={updateItemAmount}
-              />
-            ))}
-          </ScrollView>
-        ) : (
-          <EmptyCart />
+      <SafeAreaView style={styles.container}>
+        <View style={styles.content}>
+          <ScreenHeader title="Carrinho" />
+
+          {hasCartItems ? (
+            <ScrollView
+              contentContainerStyle={{ flexGrow: 1, paddingBottom: 48 }}
+              showsVerticalScrollIndicator={false}
+            >
+              {cartItems.map((item) => (
+                <CartItem
+                  key={item.id.concat(item.size)}
+                  data={item}
+                  onRemove={removeItemFromCart}
+                  onUpdateAmount={updateItemAmount}
+                />
+              ))}
+            </ScrollView>
+          ) : (
+            <EmptyCart />
+          )}
+        </View>
+
+        {hasCartItems && (
+          <Animated.View exiting={SlideOutDown} style={styles.footer}>
+            <View style={styles.totalCart}>
+              <Text style={styles.total}>Valor total</Text>
+
+              <Text style={styles.price}>
+                R$ {priceFormatter.format(totalPrice)}
+              </Text>
+            </View>
+
+            <Button
+              title="Confirmar pedido"
+              variant="secondary"
+              onPress={handleFinishOrder}
+            />
+          </Animated.View>
         )}
-      </View>
-
-      {hasCartItems && (
-        <Animated.View exiting={SlideOutDown} style={styles.footer}>
-          <View style={styles.totalCart}>
-            <Text style={styles.total}>Valor total</Text>
-
-            <Text style={styles.price}>
-              R$ {priceFormatter.format(totalPrice)}
-            </Text>
-          </View>
-
-          <Button
-            title="Confirmar pedido"
-            variant="secondary"
-            onPress={handleFinishOrder}
-          />
-        </Animated.View>
-      )}
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   )
 }

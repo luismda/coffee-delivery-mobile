@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react'
 import { Text, BackHandler } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
+import { StatusBar } from 'expo-status-bar'
 import { useSetAtom } from 'jotai'
 
 import Animated, {
@@ -43,37 +44,41 @@ export function ConfirmedScreen() {
   }, [handleGoBackToHome])
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Animated.View layout={Layout}>
-        <Animated.View
-          style={styles.imageContainer}
-          entering={SlideInLeft.easing(Easing.elastic(1))
-            .delay(200)
-            .duration(800)}
-        >
-          <DeliverySvg />
+    <>
+      <StatusBar backgroundColor="transparent" />
+
+      <SafeAreaView style={styles.container}>
+        <Animated.View layout={Layout}>
+          <Animated.View
+            style={styles.imageContainer}
+            entering={SlideInLeft.easing(Easing.elastic(1))
+              .delay(200)
+              .duration(800)}
+          >
+            <DeliverySvg />
+          </Animated.View>
         </Animated.View>
-      </Animated.View>
 
-      <Animated.View
-        layout={Layout}
-        entering={FadeInDown.delay(200).duration(800)}
-        style={styles.content}
-      >
-        <Text style={styles.title}>Uhu! Pedido confirmado</Text>
+        <Animated.View
+          layout={Layout}
+          entering={FadeInDown.delay(200).duration(800)}
+          style={styles.content}
+        >
+          <Text style={styles.title}>Uhu! Pedido confirmado</Text>
 
-        <Text style={styles.message}>
-          Agora é só aguardar que logo o café chegará até você!
-        </Text>
-      </Animated.View>
+          <Text style={styles.message}>
+            Agora é só aguardar que logo o café chegará até você!
+          </Text>
+        </Animated.View>
 
-      <Animated.View
-        layout={Layout}
-        entering={FadeIn.delay(1000)}
-        style={styles.buttonContainer}
-      >
-        <Button title="Ir para home" onPress={handleGoBackToHome} />
-      </Animated.View>
-    </SafeAreaView>
+        <Animated.View
+          layout={Layout}
+          entering={FadeIn.delay(1000)}
+          style={styles.buttonContainer}
+        >
+          <Button title="Ir para home" onPress={handleGoBackToHome} />
+        </Animated.View>
+      </SafeAreaView>
+    </>
   )
 }

@@ -3,7 +3,9 @@ import { useRoute } from '@react-navigation/native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Animated, { FadeInUp } from 'react-native-reanimated'
+import { StatusBar } from 'expo-status-bar'
 
+import { THEME } from '@/theme/default'
 import { COFFEE_LIST } from '@/data/coffee-data'
 import { priceFormatter } from '@/utils/price-formatter'
 
@@ -25,39 +27,43 @@ export function ProductScreen() {
   const [coffee] = COFFEE_LIST.filter((coffee) => coffee.id === productId)
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.content}>
-          <Animated.View entering={FadeInUp.delay(200).duration(600)}>
-            <View style={styles.header}>
-              <BackButton />
-              <CartButton />
-            </View>
+    <>
+      <StatusBar style="light" backgroundColor={THEME.COLORS.GRAY[900]} />
 
-            <View style={styles.badge}>
-              <Text style={styles.badgeLabel}>{coffee.category}</Text>
-            </View>
+      <SafeAreaView style={styles.container}>
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.content}>
+            <Animated.View entering={FadeInUp.delay(200).duration(600)}>
+              <View style={styles.header}>
+                <BackButton />
+                <CartButton />
+              </View>
 
-            <View style={styles.info}>
-              <Text style={styles.name}>{coffee.name}</Text>
+              <View style={styles.badge}>
+                <Text style={styles.badgeLabel}>{coffee.category}</Text>
+              </View>
 
-              <Text style={styles.price}>
-                <Text style={styles.priceSymbol}>R$</Text>{' '}
-                {priceFormatter.format(coffee.price)}
-              </Text>
-            </View>
+              <View style={styles.info}>
+                <Text style={styles.name}>{coffee.name}</Text>
 
-            <Text style={styles.description}>{coffee.description}</Text>
-          </Animated.View>
+                <Text style={styles.price}>
+                  <Text style={styles.priceSymbol}>R$</Text>{' '}
+                  {priceFormatter.format(coffee.price)}
+                </Text>
+              </View>
 
-          <Cup />
-        </View>
+              <Text style={styles.description}>{coffee.description}</Text>
+            </Animated.View>
 
-        <FormAddCart data={coffee} />
-      </ScrollView>
-    </SafeAreaView>
+            <Cup />
+          </View>
+
+          <FormAddCart data={coffee} />
+        </ScrollView>
+      </SafeAreaView>
+    </>
   )
 }
