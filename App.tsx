@@ -1,11 +1,13 @@
 import { useCallback, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import * as SplashScreen from 'expo-splash-screen'
+import * as Splash from 'expo-splash-screen'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useFonts, Baloo2_700Bold } from '@expo-google-fonts/baloo-2'
 import { Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto'
 
 import { Routes } from './src/routes'
+
+Splash.preventAutoHideAsync()
 
 export default function App() {
   const [hasLoadedFonts] = useFonts({
@@ -16,7 +18,7 @@ export default function App() {
 
   const hideSplashScreen = useCallback(async () => {
     if (hasLoadedFonts) {
-      await SplashScreen.hideAsync()
+      await Splash.hideAsync()
     }
   }, [hasLoadedFonts])
 
