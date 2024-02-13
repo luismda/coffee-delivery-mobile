@@ -1,9 +1,9 @@
-import { Image, View } from 'react-native'
+import { Image } from 'react-native'
 import Animated, { Easing, SlideInLeft } from 'react-native-reanimated'
 
-import SmokeSvg from '@/assets/illustrations/smoke-9.svg'
-
 import { styles } from './styles'
+
+import { Smoke } from '@/components/smoke'
 
 export function Cup() {
   return (
@@ -11,9 +11,7 @@ export function Cup() {
       entering={SlideInLeft.delay(800).duration(800).easing(Easing.elastic(1))}
       style={styles.container}
     >
-      <View style={styles.smoke}>
-        <SmokeSvg width={64} height={136} />
-      </View>
+      <Smoke />
 
       <Image
         style={styles.image}
